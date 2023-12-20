@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import Typed from "typed.js";
 import img from "../../assets/task-management-banner.jpg";
 import './banner.css'
+import { Link } from "react-router-dom";
 
 function Banner() {
   const el = useRef(null);
@@ -30,7 +31,9 @@ function Banner() {
           ></span>
         </div>
         <p className="md:w-[80%] text-[#111111b2] text-sm">This is a solution for everyone. Although it is at the heart of Scrum and is typically used by software development teams, it can be successfully applied to other businesses, as well as used for improving personal productivity.</p>
-        <button className="btn btn-outline hover:bg-[#8A4EC2] border-[#8A4EC2] text-[17px]">Let’s Explore</button>
+        <Link to="/login">
+            <button className="btn btn-outline hover:bg-[#8A4EC2] border-[#8A4EC2] text-[17px]">Let’s Explore</button>
+        </Link>
       </div>
       <div>
         <div className="w-full">
