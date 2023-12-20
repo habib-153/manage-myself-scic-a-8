@@ -9,6 +9,8 @@ import AuthProvider from "./Provider/AuthProvider";
 import Login from "./Login/Login";
 import { HelmetProvider } from "react-helmet-async";
 import Register from "./Register/Register";
+import Dashboard from "./DashBoard/Dashboard/Dashboard";
+import PrivateRoute from "./Component/PrivetRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "dashboard",
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

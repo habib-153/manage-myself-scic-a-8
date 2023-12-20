@@ -1,6 +1,14 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user , logOut} = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navLinks = (
     <div className="md:flex gap-5 md:items-center">
       <li className="hover:text-[#ffc403]">
@@ -19,7 +27,7 @@ const Navbar = () => {
       </li>
       <li className="hover:text-[#ffc403]">
         <NavLink
-          to="/projects"
+          to="/todo"
           className={({ isActive, isPending }) =>
             isActive
               ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
@@ -33,7 +41,7 @@ const Navbar = () => {
       </li>
       <li className="hover:text-[#ffc403]">
         <NavLink
-          to="/skills"
+          to="/completed"
           className={({ isActive, isPending }) =>
             isActive
               ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
@@ -47,7 +55,7 @@ const Navbar = () => {
       </li>
       <li className="hover:text-[#ffc403]">
         <NavLink
-          to="/aboutMe"
+          to="/ongoing"
           className={({ isActive, isPending }) =>
             isActive
               ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
@@ -95,8 +103,56 @@ const Navbar = () => {
       <div className="navbar-center hidden md:flex">
         <ul className="font-semibold menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end">
-        
+      <div className="navbar-end gap-8">
+        <div>
+        {user ? (
+        <p className="hover:text-[#ffc403] font-bold">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive, isPending }) =>
+              isActive
+                ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
+                : isPending
+                ? "pending"
+                : ""
+            }
+          >
+            Dashboard
+          </NavLink>
+        </p>
+      ) : undefined}
+        </div>
+        <div>
+        {user?.email ? (
+            <div className="dropdown dropdown-end">
+              <div className="tooltip tooltip-left" data-tip={user.displayName}>
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-11 rounded-full">
+                    <img src={user.photoURL} alt={user.displayName} />
+                  </div>
+                </label>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content text-center mt-3 z-[1] p-2 shadow bg-[#434543c3] rounded-box w-52"
+              >
+                <li>
+                  <p className="text-white w-full text-center font-semibold">
+                    {user.displayName}
+                  </p>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogOut}
+                    className="btn btn-sm btn-outline w-full text-white border-0"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : undefined}
+        </div>
       </div>
     </div>
   );

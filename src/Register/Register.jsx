@@ -38,13 +38,13 @@ const Register = () => {
           updateUserProfile(data.name, imageURL).then(() => {
             // console.log("User Updated Successfully")
                 Swal.fire({
-                  position: "top-end",
+                  position: "top",
                   icon: "success",
                   title: "User Created Successfully",
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                navigate("/");
+                navigate("/dashboard");
           });
         });
       };

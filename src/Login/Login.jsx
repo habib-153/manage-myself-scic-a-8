@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from '../assets/authentication.gif';
 import { useContext, } from "react";
 import { AuthContext } from "../Provider/AuthProvider.jsx";
@@ -9,9 +9,6 @@ import SocialLogin from "../Component/SocialLogin/SocialLogin.jsx";
 const Login = () => {
     const {signIn} = useContext(AuthContext)
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const from = location.state?.from?.pathname || "/" ;
 
     const handleLogin = e =>{
         e.preventDefault()
@@ -40,7 +37,7 @@ const Login = () => {
               `
             }
           });
-          navigate(from, {replace: true})
+          navigate("/dashboard")
         })
     }
     
