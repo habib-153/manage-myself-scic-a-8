@@ -13,6 +13,7 @@ import Dashboard from "./DashBoard/Dashboard/Dashboard";
 import PrivateRoute from "./Component/PrivetRoute/PrivateRoute";
 import Tasks from "./DashBoard/Tasks/Tasks";
 import AddTasks from "./DashBoard/AddTasks/AddTasks";
+import ToDo from "./DashBoard/ToDo/ToDo";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,11 @@ const router = createBrowserRouter([
       {
         path:"addTask",
         element: <PrivateRoute><AddTasks></AddTasks></PrivateRoute>,
-      }
+      },
+      {
+        path:"toDo",
+        element: <PrivateRoute><ToDo></ToDo></PrivateRoute>,
+      },
     ]
   }
 ]);

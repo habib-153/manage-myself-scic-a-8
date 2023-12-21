@@ -1,14 +1,17 @@
 import { FaHome, FaTasks } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Dashboard = () => {
+  const { user } = useContext(AuthContext);
   const NavOption = (
     <>
       <>
         <li>
           <NavLink to="/dashboard/tasks">
-          <FaTasks></FaTasks>Tasks
+            <FaTasks></FaTasks>Tasks
           </NavLink>
         </li>
       </>
@@ -18,7 +21,6 @@ const Dashboard = () => {
           <FaHome></FaHome>Home
         </NavLink>
       </li>
-      
     </>
   );
   return (
@@ -27,7 +29,7 @@ const Dashboard = () => {
         <title>Manage Myself | Dashboard</title>
       </Helmet>
       <div className="lg:flex flex-col">
-        <div className=" hidden lg:block bg-[#64b6dfec]">
+        <div className=" hidden lg:flex justify-between bg-[#64b6dfec]">
           <ul className="menu flex-row justify-center">
             <>
               <li>
@@ -43,6 +45,17 @@ const Dashboard = () => {
               </NavLink>
             </li>
           </ul>
+          <div>
+            {user?.email ? (
+              <div className="tooltip tooltip-left" data-tip={user.displayName}>
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-11 rounded-full">
+                    <img src={user.photoURL} alt={user.displayName} />
+                  </div>
+                </label>
+              </div>
+            ) : undefined}
+          </div>
         </div>
         <div className="lg:hidden">
           <div className="dropdown">
