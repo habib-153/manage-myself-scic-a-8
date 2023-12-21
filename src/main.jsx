@@ -11,6 +11,8 @@ import { HelmetProvider } from "react-helmet-async";
 import Register from "./Register/Register";
 import Dashboard from "./DashBoard/Dashboard/Dashboard";
 import PrivateRoute from "./Component/PrivetRoute/PrivateRoute";
+import Tasks from "./DashBoard/Tasks/Tasks";
+import AddTasks from "./DashBoard/AddTasks/AddTasks";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +35,17 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children:[
+      {
+        path:"tasks",
+        element: <PrivateRoute><Tasks></Tasks></PrivateRoute>,
+      },
+      {
+        path:"addTask",
+        element: <PrivateRoute><AddTasks></AddTasks></PrivateRoute>,
+      }
+    ]
   }
 ]);
 
