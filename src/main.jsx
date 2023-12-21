@@ -14,7 +14,8 @@ import PrivateRoute from "./Component/PrivetRoute/PrivateRoute";
 import Tasks from "./DashBoard/Tasks/Tasks";
 import AddTasks from "./DashBoard/AddTasks/AddTasks";
 import ToDo from "./DashBoard/ToDo/ToDo";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,12 +58,14 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
+    <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <div className="max-w-[1200px] mx-auto">
         <RouterProvider router={router} />
         <Toaster />
       </div>
     </HelmetProvider>
+    </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>
 );
