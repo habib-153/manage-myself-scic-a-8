@@ -13,6 +13,7 @@ import Dashboard from "./DashBoard/Dashboard/Dashboard";
 import PrivateRoute from "./Component/PrivetRoute/PrivateRoute";
 import Tasks from "./DashBoard/Tasks/Tasks";
 import AddTasks from "./DashBoard/AddTasks/AddTasks";
+import UsersAndBenefits from "./Home/UsersAndBenefits/UsersAndBenefits";
 import ToDo from "./DashBoard/ToDo/ToDo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UpdateTasks from "./DashBoard/UpdateTasks/UpdateTasks";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "usersAndBenefit",
+        element: <UsersAndBenefits></UsersAndBenefits>
       },
       {
         path: "login",
@@ -51,7 +56,7 @@ const router = createBrowserRouter([
       {
         path:"updateTask/:id",
         element: <PrivateRoute><UpdateTasks></UpdateTasks></PrivateRoute>,
-        loader: ({params}) => fetch(`https://task-management-a8-server-828aprsaa-habibur-rahmans-projects.vercel.app/task/${params.id}`)
+        loader: ({params}) => fetch(`https://task-management-a8-server-h752ffohk-habibur-rahmans-projects.vercel.app/task/${params.id}`)
       },
       {
         path:"toDo",

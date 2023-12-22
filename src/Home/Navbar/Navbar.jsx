@@ -27,7 +27,7 @@ const Navbar = () => {
       </li>
       <li className="hover:text-[#ffc403]">
         <NavLink
-          to="/todo"
+          to="/usersAndBenefit"
           className={({ isActive, isPending }) =>
             isActive
               ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
@@ -36,12 +36,12 @@ const Navbar = () => {
               : ""
           }
         >
-          To do
+          About
         </NavLink>
       </li>
       <li className="hover:text-[#ffc403]">
         <NavLink
-          to="/completed"
+          to="/usersAndBenefit"
           className={({ isActive, isPending }) =>
             isActive
               ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
@@ -50,12 +50,12 @@ const Navbar = () => {
               : ""
           }
         >
-          Completed
+          Contact
         </NavLink>
       </li>
       <li className="hover:text-[#ffc403]">
         <NavLink
-          to="/ongoing"
+          to="/usersAndBenefit"
           className={({ isActive, isPending }) =>
             isActive
               ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
@@ -64,7 +64,7 @@ const Navbar = () => {
               : ""
           }
         >
-          Ongoing
+          Know US
         </NavLink>
       </li>
     </div>
