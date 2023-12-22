@@ -1,48 +1,37 @@
-import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../Component/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
-const AddTasks = () => {
-  const { register, handleSubmit } = useForm();
-  const {user} = useContext(AuthContext)
-  const axiosPublic = useAxiosPublic()
-  const onSubmit = async (data) => {
-    // console.log(data);
-    const task = {
-        title: data.title,
-        email: user.email,
-        description: data.description,
-        deadline: data.deadline,
-        priority: data.priority,
-        status: "to-do"
-    }
-    console.log(task)
-        const res = await axiosPublic.post('/tasks', task)
-        console.log(res.data)
-        if(res.data.insertedId){
-            // show success popup
-            Swal.fire({
-                icon: "success",
-                title: "New Task added",
-                showConfirmButton: false,
-                timer: 1500
-              });
+const UpdateTasks = () => {
+    const {title, email, description, deadline, priority, status, _id} = useLoaderData()
+    const { register, handleSubmit } = useForm();
+    const axiosPublic = useAxiosPublic()
+    const onSubmit = async (data) => {
+        // console.log(data);
+        const task = {
+            title: data.title,
+            email: email,
+            description: data.description,
+            deadline: data.deadline,
+            priority: data.priority,
+            status: status
         }
-  };
-
-  return (
-    <div>
-      <Helmet>
-        <title>Manage Myself | Add Tasks</title>
-      </Helmet>
-      <SectionTitle
-        heading="Add A New Task"
-      ></SectionTitle>
-      <div>
+        const menuRes = await axiosPublic.patch(`/task/${_id}`, task)
+            console.log(menuRes.data)
+            if(menuRes.data.modifiedCount > 0){
+                // show success popup
+                Swal.fire({
+                    icon: "success",
+                    title: "Updated",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+    }
+    return (
+        <div>
+            <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
             <div className="form-control">
@@ -50,9 +39,8 @@ const AddTasks = () => {
                 <span className="label-text font-semibold">Title</span>
               </label>
               <input
-                type="text"
+                type="text" defaultValue={title}
                 {...register("title", { required: true })}
-                placeholder="Title"
                 className="input input-bordered"
                 required
               />
@@ -63,7 +51,7 @@ const AddTasks = () => {
                 <span className="label-text font-semibold">Description</span>
               </label>
               <input
-                type="text"
+                type="text" defaultValue={description}
                 {...register("description", { required: true })}
                 placeholder="Description"
                 className="input input-bordered"
@@ -76,7 +64,7 @@ const AddTasks = () => {
                 <label className="label">
                   <span className="label-text font-semibold">Priority</span>
                 </label>
-                <select defaultValue="default"
+                <select defaultValue={priority}
                   {...register("priority", {required: true})}
                   className="select select-bordered w-full"
                 >
@@ -93,7 +81,7 @@ const AddTasks = () => {
                 <span className="label-text font-semibold">Deadline</span>
               </label>
               <input
-                type="date"
+                type="date" defaultValue={deadline}
                 {...register("deadline", { required: true })}
                 placeholder="Deadline"
                 className="input input-bordered"
@@ -102,12 +90,12 @@ const AddTasks = () => {
             </div>
           </div>
           <div className="w-full text-center mt-4">
-            <button className="btn">Add To ToDo</button>
+            <button className="btn">Update</button>
           </div>
         </form>
       </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default AddTasks;
+export default UpdateTasks;

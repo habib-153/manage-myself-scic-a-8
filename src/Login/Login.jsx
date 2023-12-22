@@ -37,7 +37,7 @@ const Login = () => {
               `
             }
           });
-          navigate("/dashboard")
+          navigate("/dashboard/tasks")
         })
     }
     

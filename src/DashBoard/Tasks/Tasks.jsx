@@ -12,7 +12,7 @@ const Tasks = () => {
                     <button className="btn btn-outline text-xl border-[#8A4EC2] hover:bg-[#8A4EC2]"><FaPlusCircle /></button>
                 </Link>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                 <ToDo></ToDo>
                 <Ongoing></Ongoing>
                 <Completed></Completed>

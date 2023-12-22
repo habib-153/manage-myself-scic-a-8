@@ -15,6 +15,7 @@ import Tasks from "./DashBoard/Tasks/Tasks";
 import AddTasks from "./DashBoard/AddTasks/AddTasks";
 import ToDo from "./DashBoard/ToDo/ToDo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import UpdateTasks from "./DashBoard/UpdateTasks/UpdateTasks";
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
       {
         path:"addTask",
         element: <PrivateRoute><AddTasks></AddTasks></PrivateRoute>,
+      },
+      {
+        path:"updateTask/:id",
+        element: <PrivateRoute><UpdateTasks></UpdateTasks></PrivateRoute>,
+        loader: ({params}) => fetch(`https://task-management-a8-server-828aprsaa-habibur-rahmans-projects.vercel.app/task/${params.id}`)
       },
       {
         path:"toDo",

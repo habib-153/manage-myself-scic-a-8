@@ -57,7 +57,7 @@ const Dashboard = () => {
             ) : undefined}
           </div>
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden flex justify-between">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost">
               <svg
@@ -81,6 +81,17 @@ const Dashboard = () => {
             >
               {NavOption}
             </ul>
+          </div>
+          <div>
+            {user?.email ? (
+              <div className="tooltip tooltip-left" data-tip={user.displayName}>
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-11 rounded-full">
+                    <img src={user.photoURL} alt={user.displayName} />
+                  </div>
+                </label>
+              </div>
+            ) : undefined}
           </div>
         </div>
         <div className="flex-1 p-3 md:p-8">

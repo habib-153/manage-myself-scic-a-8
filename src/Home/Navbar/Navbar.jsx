@@ -108,7 +108,7 @@ const Navbar = () => {
         {user ? (
         <p className="hover:text-[#ffc403] font-bold">
           <NavLink
-            to="/dashboard"
+            to="/dashboard/tasks"
             className={({ isActive, isPending }) =>
               isActive
                 ? "text-[#8A4EC2] hover:text-[#ffc403] underline font-bold"
