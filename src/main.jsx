@@ -56,7 +56,8 @@ const router = createBrowserRouter([
       {
         path:"updateTask/:id",
         element: <PrivateRoute><UpdateTasks></UpdateTasks></PrivateRoute>,
-        loader: ({params}) => fetch(`https://task-management-a8-server-h752ffohk-habibur-rahmans-projects.vercel.app/task/${params.id}`)
+        loader: ({params}) => fetch(`https://task-management-a8-server.vercel.app/task/${params.id}`)
+        // loader: ({params}) => fetch(`http://localhost:5000/task/${params.id}`)
       },
       {
         path:"toDo",
