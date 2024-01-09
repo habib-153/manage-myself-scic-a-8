@@ -17,6 +17,9 @@ import UsersAndBenefits from "./Home/UsersAndBenefits/UsersAndBenefits";
 import ToDo from "./DashBoard/ToDo/ToDo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UpdateTasks from "./DashBoard/UpdateTasks/UpdateTasks";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Task1 from "./DashBoard/Task1/Task1";
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -50,6 +53,10 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Tasks></Tasks></PrivateRoute>,
       },
       {
+        path:"tasksDrag",
+        element: <PrivateRoute><Task1></Task1></PrivateRoute>,
+      },
+      {
         path:"addTask",
         element: <PrivateRoute><AddTasks></AddTasks></PrivateRoute>,
       },
@@ -70,6 +77,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
+    <DndProvider backend={HTML5Backend}>
     <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <div className="max-w-[1200px] mx-auto">
@@ -78,6 +86,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </div>
     </HelmetProvider>
     </QueryClientProvider>
+    </DndProvider>
     </AuthProvider>
   </React.StrictMode>
 );
