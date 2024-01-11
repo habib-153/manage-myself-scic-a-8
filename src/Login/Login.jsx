@@ -50,9 +50,9 @@ const Login = () => {
         <div className="">
           <img className="rounded-xl" src={loginImg} alt="" />
         </div>
-        <div className="card w-[80%] shadow-2xl bg-base-100">
+        <div className="card md:w-[80%] shadow-2xl bg-base-100">
         <h1 className="text-5xl font-bold text-center mt-4">Login</h1>
-          <form onSubmit={handleLogin} className="card-body">
+          <form onSubmit={handleLogin} className="card-body p">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

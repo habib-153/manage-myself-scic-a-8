@@ -19,7 +19,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UpdateTasks from "./DashBoard/UpdateTasks/UpdateTasks";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Task1 from "./DashBoard/Task1/Task1";
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
@@ -52,10 +51,10 @@ const router = createBrowserRouter([
         path:"tasks",
         element: <PrivateRoute><Tasks></Tasks></PrivateRoute>,
       },
-      {
-        path:"tasksDrag",
-        element: <PrivateRoute><Task1></Task1></PrivateRoute>,
-      },
+      // {
+      //   path:"tasksDrag",
+      //   element: <PrivateRoute><Task1></Task1></PrivateRoute>,
+      // },
       {
         path:"addTask",
         element: <PrivateRoute><AddTasks></AddTasks></PrivateRoute>,
