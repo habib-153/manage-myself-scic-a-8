@@ -18,7 +18,7 @@ const Task1 = () => {
         queryKey: ['tasks'],
         queryFn: async () => {
             let res = await axiosPublic.get(`/tasks/${user.email}`)
-            //console.log(res)
+            
             setTodo(res.data.todo)
             setOngoing(res.data.ongoing)
             setCompleted(res.data.completed)
